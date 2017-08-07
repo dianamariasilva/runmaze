@@ -32,7 +32,7 @@ function dibujarMapa() {
 				td.setAttribute("class","limpio");
 			else if(mapa[i][j]=="o"){
 				td.setAttribute("class","inicio");
-				actual={td:td,x:i,y:j};
+				actual={td:td,x:i,y:j,direccion:0};
 			}
 			else if(mapa[i][j]=="W")
 				td.setAttribute("class","fin");
@@ -47,77 +47,90 @@ function dibujarMapa() {
 function jugar(){
 	var img = document.createElement("img");
 	img.src =  "img/0.png";
-	img.id= "0";
+	actual.direccion= "0";
 	actual.td.appendChild(img);
 }
 dibujarMapa();
 jugar();
 //console.log(celdas);
 /*
-Si id=0 la flecha esta hacia arriba
-Si id=1 la flecha esta hacia derecha
-Si id=2 la flecha esta hacia abajo
-Si id=3 la flecha esta hacia izquierda
+Si direccion=0 la flecha esta hacia arriba
+Si direccion=1 la flecha esta hacia derecha
+Si direccion=2 la flecha esta hacia abajo
+Si direccion=3 la flecha esta hacia izquierda
 */
 
 der.onclick = function(){
-	var idActual=actual.td.firstChild.id;
-	idActual++;
-	idActual %=4;
+	if(actual==undefined){
+		alert("El juego terminó, actualiza la página.");
+		return;
+	}
+	var dir_actual=actual.direccion;
+	dir_actual++;
+	dir_actual %=4;
 	actual.td.removeChild(actual.td.firstChild);
 	var img = document.createElement("img");
-	img.src =  "img/"+idActual+".png";
-	img.id= idActual;
+	img.src =  "img/"+dir_actual+".png";
+	actual.direccion= dir_actual;
 	actual.td.appendChild(img);
 };
 izq.onclick = function(){
-	var idActual=actual.td.firstChild.id;
-	idActual--;
-	if(idActual <0)
-		idActual = 3;
+	if(actual==undefined){
+		alert("El juego terminó, actualiza la página.");
+		return;
+	}
+	var dir_actual=actual.direccion;
+	dir_actual--;
+	if(dir_actual <0)
+		dir_actual = 3;
 	actual.td.removeChild(actual.td.firstChild);
 	var img = document.createElement("img");
-	img.src =  "img/"+idActual+".png";
-	img.id= idActual;
-	actual.td.appendChild(img);	
+	img.src =  "img/"+dir_actual+".png";
+	actual.direccion= dir_actual;
+	actual.td.appendChild(img);
 };
 go.onclick = function(){
-	var idActual=actual.td.firstChild.id;
+
+	if(actual==undefined){
+		alert("El juego terminó, actualiza la página.");
+		return;
+	}
+	var dir_actual=actual.direccion;
 	var img = document.createElement("img");
 
-	if(idActual== 0){
+	if(dir_actual== 0){
 		if(mapa[actual.x-1][actual.y] == "_" || mapa[actual.x-1][actual.y] == "W" ){
 			actual.td.removeChild(actual.td.firstChild);
 			actual = {td:celdas[(actual.x)-1][actual.y],x:(actual.x)-1,y:actual.y};
-			img.src =  "img/"+idActual+".png";
-			img.id= idActual;
+			img.src =  "img/"+dir_actual+".png";
+			actual.direccion = dir_actual;
 			actual.td.appendChild(img);
 		}
 	}
-	else if(idActual== 1){
+	else if(dir_actual== 1){
 		if(mapa[actual.x][actual.y+1] == "_" || mapa[actual.x][actual.y+1] == "W"){
 			actual.td.removeChild(actual.td.firstChild);
 			actual = {td:celdas[actual.x][actual.y+1],x:actual.x,y:actual.y+1};
-			img.src =  "img/"+idActual+".png";
-			img.id= idActual;
+			img.src =  "img/"+dir_actual+".png";
+			actual.direccion= dir_actual;
 			actual.td.appendChild(img);
 		}
 	}
-	else if(idActual== 2){
+	else if(dir_actual== 2){
 		if(mapa[actual.x+1][actual.y] == "_" || mapa[actual.x+1][actual.y] == "W"){
 			actual.td.removeChild(actual.td.firstChild);
 			actual = {td:celdas[(actual.x)+1][actual.y],x:(actual.x)+1,y:actual.y};
-			img.src =  "img/"+idActual+".png";
-			img.id= idActual;
+			img.src =  "img/"+dir_actual+".png";
+			actual.direccion= dir_actual;
 			actual.td.appendChild(img);
 		}
 	}
-	else if(idActual== 3){
+	else if(dir_actual== 3){
 		if(mapa[actual.x][actual.y-1] == "_" || mapa[actual.x][actual.y-1] == "W"){
 			actual.td.removeChild(actual.td.firstChild);
 			actual = {td:celdas[actual.x][actual.y-1],x:actual.x,y:actual.y-1};
-			img.src =  "img/"+idActual+".png";
-			img.id= idActual;
+			img.src =  "img/"+dir_actual+".png";
+			actual.direccion= dir_actual;
 			actual.td.appendChild(img);
 		}
 	}
