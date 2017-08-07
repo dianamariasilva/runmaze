@@ -1,19 +1,48 @@
 .muro{
-	background-color:black;
+	background:url("../img/wall.jpg");
+	background-size: 50px 50px;
 }
 .inicio{
-	background-color: yellow;
+	background:url("../img/grass.jpg");
+	background-color: #2D561C;
 }
 .fin{
-	background-color: green;
+	background:url("../img/win.png");
+	background-repeat: no-repeat;
+	background-color: #2D561C;
+	
 }
 .limpio{
-	background-color: #ff0022;
+	background:url("../img/grass.jpg");
 }
 table{
 	border-spacing: 0px;
 }
-td{
+div td{
 	width: 50px;
 	height: 50px;
+}
+
+button {  
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+    background: white;
+    color: black;
+    border: 2px solid #4CAF50; /* Green */
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+button:hover {
+    background-color: #4CAF50;
+    
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
 }
