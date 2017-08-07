@@ -135,7 +135,6 @@ go.onclick = function(){
 		}
 	}
 
-
 	if(mapa[actual.x][actual.y] == "W" ){
 		actual.td.removeChild(actual.td.firstChild);
 		img.src =  "img/win.png";
@@ -145,3 +144,14 @@ go.onclick = function(){
 		actual=undefined;
 	}
 };
+
+window.onload = function(){
+	document.onkeyup = function(event){
+		if(event.keyCode==37)
+			izq.click();
+		if(event.keyCode == 38)
+			go.click();
+		if(event.keyCode == 39)
+			der.click();
+	}
+}
